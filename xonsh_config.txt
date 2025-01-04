@@ -1,0 +1,29 @@
+
+### Configure a new function to install packages locally
+
+user="sagemaker-user"
+custom_packages_path = f"/home/{user}/user-default-efs/config/custom_packages"
+default_bin_folder = "/usr/bin"
+
+# first we download and install the package
+def dinstall(package):
+        # get the current directory
+        curdir = $(pwd)[:-1]
+
+        #cd into the persistent directory
+        cd @(custom_packages_path)
+        # download the package
+        apt-get download @(package)
+        # extract it
+        dpkg -x @(package).deb @(package)
+        # add the bin files to the PATH
+        $PATH.append(custom_packages_path + default_bin_folder)
+
+
+
+
+
+# configure the prompt
+RepoName=$(basename -s .git $(git config --get remote.origin.url))[:-6]
+
+$PROMPT = '{BOLD_RED}-Xonsh-{BOLD_GREEN}{user}@{hostname}:{WHITE}{cwd}\n' + RepoName + '<-> {curr_branch} {RED}$ '

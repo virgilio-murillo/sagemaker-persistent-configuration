@@ -1,0 +1,27 @@
+# === simple functions
+# loadFile -- for loading a file into a variable
+# printFile -- for printing the content of a file
+# filter -- filter a list of the files
+
+
+
+
+# options im-> inword
+snippet loadFile "for loading a file"
+val logs = sc.textFile(log)
+endsnippet
+
+# options im-> inword
+snippet printFile "for printing a file"
+logs.foreach(println)
+logs.collect()
+logs.take(10)
+endsnippet
+
+
+# options im-> inword
+snippet filter "for filtering information"
+val jpglogs = logs.filter(x=>x.contains(".jpg"))
+endsnippet
+
+

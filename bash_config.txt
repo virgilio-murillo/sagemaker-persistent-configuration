@@ -1,0 +1,33 @@
+# Define colors
+BLACK='\[\033[0;30m\]'
+RED='\[\033[0;31m\]'
+GREEN='\[\033[0;32m\]'
+YELLOW='\[\033[0;33m\]'
+BLUE='\[\033[0;34m\]'
+PURPLE='\[\033[0;35m\]'
+CYAN='\[\033[0;36m\]'
+WHITE='\[\033[0;37m\]'
+NC='\[\033[0m\]' # No Color
+
+
+
+parse_git_branch() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/git:(\1)/'
+}
+
+# Get the current Conda environment
+parse_conda_env() {
+  if [ -n "$CONDA_PREFIX" ]; then
+    echo "conda-env:($CONDA_DEFAULT_ENV)"
+  fi
+}
+
+RepoName=$(basename "$(git config --get remote.origin.url)")
+
+
+
+# Define the PS1 prompt
+PS1="\n$RED-Bash-$GREEN\u@\h:$WHITE\w$NC\n $(parse_git_branch)<->$RepoName - $(parse_conda_env) $RED\$$WHITE "
+# Export the PS1 variable
+
+export PS1

@@ -1,0 +1,416 @@
+
+
+# info -- for the information on the database
+# sec - for creatign a new section
+# -------- sql basic syntax
+
+# ======== sql basic syntax ====
+# join -- the basic syntax for a join
+# ======== queries ========
+# showUsers -- to show all users available in the server
+# showAll -- for showing everything in a table
+# describe -- for showing the rows of a table
+# =========== databases ============
+# createDatabase -- for creating a database
+# deleteDatabase -- for deleting a database
+
+# showPrivileges -- to show the privileges
+
+# ========== table modifications ========
+# foreign -- for  a foreign key
+# createTable -- for creating a table interactively
+# deltable -- for deleting a table
+# helpTable -- for help on the table creation and deletion
+# ========== data modifications =========
+# insert -- for inserting a new value into the table
+# insertIfne -- for inserting a value if it doesn't exist
+# update -- for updating the database
+
+
+# =========== users ======
+# passChange -- for changing the password of a user
+# helpUsers -- to get help on the users
+# grantAll -- to grant all privileges to user over the database
+# showCurUser -- for showing the current user
+
+
+# ======== functions ========
+# func_ms_sql_server -- for the function for the ms sql server
+# func_mysql -- for the function for the mysql
+
+
+# ======= microsoft sql server =======
+# bak_import -- for importing a bak file
+# bak_export -- for exporting a bak file
+# stable_help -- for getting help on the table
+# stored_procedures -- for storing procedures
+# UserDefinedFunctions -- for user defined functions
+
+
+
+
+
+# options im-> inword
+snippet info "personal information"
+-- Date: `date +%d/%B/%Y\ -\ %A`
+-- Author: Virgilio Murillo Ochoa
+-- personal github: Virgilio-AI
+-- linkedin: https://www.linkedin.com/in/virgilio-murillo-ochoa-b29b59203
+-- contact: virgiliomurilloochoa1@gmail.com
+-- web: virgiliomurillo.com
+$1
+endsnippet
+
+# options im-> inword
+snippet sec "for creating the section"
+-- ################################
+-- ########## $1
+-- ################################
+
+endsnippet
+
+snippet insertIfne
+-- insert query
+insert into ${1:tableName}(${2:name,actionDescription}) values(${3:"alert","gives a personalized voice alert for the system"})
+SELECT ${4:row_to_compare}
+FROM $1
+WHERE NOT($4 IN (SELECT $4 FROM $1));
+endsnippet
+
+
+
+
+
+
+
+snippet describe
+describe $1 ;
+endsnippet
+
+
+
+
+
+
+
+# ==========================
+# ========== sql basic syntax ======
+# ==========================
+snippet compHelp
+-- <,>,<=,>=,=,
+-- != equal <>
+-- and,or
+endsnippet
+
+snippet wildCards
+-- % -> A substitude for 0 or more characters
+-- _ -> a substitude for a single character
+-- [charlist] -> sets and ranges for characters to match
+endsnippet
+
+snippet join
+select ${1:table.col,table.col}
+from table
+join ${2:second_table}
+on employee.id == branch.id;
+-- left join if you want to see all
+endsnippet
+
+# ==========================
+# ========== queries ======
+# ==========================
+
+snippet showTables
+show tables ;
+endsnippet
+snippet showUsers
+SELECT User FROM mysql.user ;
+endsnippet
+
+snippet showAll
+select * from $1 ;
+endsnippet
+
+# options im-> inword
+# ==========================
+# ========== databases ======
+# ==========================
+
+# options im-> inword
+snippet createDatabase "for creating a database"
+create database ${1:name_of_database} ;
+endsnippet
+# options im-> inword
+snippet deleteDatabase "for deleting a database"
+drop database ${1:is exists} ${2:name_of_database}
+endsnippet
+# options im-> inword
+# options im-> inword
+snippet showPrivileges "to show the privileges"
+show grants for '${1:username}'@'${2:localhost} ;
+endsnippet
+# options im-> inword
+snippet showColumn "for showing the specified column"
+select ${1:list,of,columns}
+from student
+${2:[ order by (list of columns)]}
+;
+endsnippet
+
+snippet columnConditions
+-- select * 
+-- from ${column}
+-- where name in ('name1','name2')
+-- limit 5;
+endsnippet
+
+snippet countVal
+select count(${1:column})
+from ${2:table}
+-- [where conditions]
+;
+endsnippet
+
+snippet average
+select avg(${1:column})
+from ${2:table}
+-- [ where conditions]
+-- [ group by column ]
+endsnippet
+
+
+# options im-> inword
+snippet union "merge two queries into one"
+-- select column
+-- from employee
+-- union
+-- select branch_name
+-- from branch
+endsnippet
+# options im-> inword
+# ==========================
+# ========== table modifications ======
+# ==========================
+
+snippet foreign
+foreign key (${1:name_of_key_in_this_table}) references ${2:foreign_table}(${3:value_in_foreing_table})
+endsnippet
+
+snippet createTable
+-- mysql , mariadb
+create table if not exists ${1:table_name}(
+	$2
+);
+
+-- ms sql server
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='tbl_name' and xtype='U')
+CREATE TABLE tbl_name (
+		Name varchar(64) not null
+	)
+GO
+endsnippet
+# options im-> inword
+snippet helpTable "for help on the table creating and deletion"
+
+-- data types -> varchar(n),Int,DECIMAL(M,N),BLOB,DATE,TIMESTAMP,float
+-- float is variable and decimal is fixed
+-- use float always
+-- constrains -> not null,unique,auto_increment,default 'val'
+-- on delete -> on delete set null, on delete cascade
+-- snippets -> foreign,
+
+-- EXAMPLE
+-- student_id INT,
+-- name VARCHAR(20) not null,
+-- major VARCHAR(20) unique,
+-- parragraph text,
+-- short_parragraph mediumtext,
+-- primary key(student_id)
+-- foreign key(student_id) references branch(branch_id) on delete cascade
+endsnippet
+
+snippet deltable
+drop table ${1:table_name}
+endsnippet
+
+snippet addRow
+alter table ${1:name_of_table} add ${2:name varchar(100)}
+endsnippet
+
+snippet modTable
+-- alter table name_of_table
+-- add foreign key(branch_id)
+-- references branch(branch_id)
+-- on delete set null;
+endsnippet
+# ==========================
+# ========== data modification ======
+# ==========================
+
+snippet insert
+insert into ${1:table_name}(${2:info,action,name,weeks,action_time,hour,minute}) values(${3:"test info","test action","test name",1,10,12,30}) ;
+endsnippet
+
+# options im-> inword
+snippet update "update the data" 
+-- see compHelp
+update ${1:table_name}
+set ${2:column_name} = ${3:value}
+-- you can separate this by commas
+-- ex: name='tom',name='jon'
+where ${4:condition} ;
+endsnippet
+
+
+# ==========================
+# ========== users ======
+# ==========================
+
+# options im-> inword
+snippet passChange "for changing the password of a user"
+SET PASSWORD FOR '$1'@${2:localhost} = PASSWORD("$3");
+endsnippet
+snippet helpUsers "for getting help on the users"
+# the user that is been used when login normally is the '' user
+endsnippet
+
+
+snippet grantAll "grant all privileges to user over database"
+-- use it on the terminal as sudo
+-- sudo mariadb
+grant all privileges on ${1:database_name}.* to '${2:username}'@${3:localhost} ;
+endsnippet
+
+
+snippet showCurUser " to show the current user"
+select user() ;
+endsnippet
+
+
+
+# ==========================
+# ========== functions ======
+# ==========================
+
+# options im-> inword
+snippet func_ms_sql_server "function in ms server"
+
+
+CREATE FUNCTION getNthHighestSalary(@N INT) RETURNS INT AS
+BEGIN
+	RETURN (
+		/* Write your T-SQL query statement below. */
+
+	);
+END
+
+endsnippet
+
+# options im-> inword
+snippet func_mysql "for mysql"
+
+
+CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
+BEGIN
+	RETURN (
+		# Write your MySQL query statement below.
+
+	);
+END
+
+endsnippet
+
+
+snippet deleteRow
+-- to delete a row from the table
+delete from ${1:name_of_table} where ${2:condition} ;
+endsnippet
+# ==========================
+# ========== triggers ======
+# ==========================
+
+snippet trigger
+create table ${1:trigger test} (
+	message varchar(100)
+	);
+endsnippet
+
+
+
+
+
+# ==========================
+# ========== microsoft sql server ======
+# ==========================
+
+# options im-> inword
+snippet bak_import "for importing bak ms file"
+-- copy bak file to the folder because of ms user permissions
+-- /var/opt/mssql/data
+
+
+-- to see the database
+-- restore filelistonly from disk = N'/var/opt/mssql/data/adventure-works-2008r2-lt.bak'
+
+restore database AdventureWorksLT2008
+from disk = N'/var/opt/mssql/data/adventure-works-2008r2-lt.bak'
+with move 'AdventureWorksLT2008_Data' to '/var/opt/mssql/data/AdventureWorksLT2008_Data.mdf',
+move 'AdventureWorksLT2008_Log' to '/var/opt/mssql/data/AdventureWorksLT2008_log.LDF'
+go
+
+
+
+
+endsnippet
+
+
+# options im-> inword
+snippet bak_export "for exporting a database"
+-- missing
+endsnippet
+
+# options im-> inword
+snippet stable_help "table information"
+
+exec sp_help '${1:table_name}' ;
+
+endsnippet
+
+# options im-> inword
+snippet stored_procedures "for storing procedures"
+create proc ${1:procedure_name}
+@var as varchar(30).
+@cantidad as int
+as
+select @var,@cantidad from Production where @var = 'var'
+endsnippet
+
+
+
+# options im-> inword
+snippet UserDefinedFunctions "for information on functions"
+
+--  return scalar value
+
+create or alter function ${2:name} (${1:@variables,@var2})
+returns int as
+begin
+	return 1
+end
+
+
+create or alter function ${2:name} (${1:@year,@var2})
+returns table as
+return
+select * from
+Employee
+where year(BirdtDate) = @year
+
+
+
+
+endsnippet
+
+
+
+

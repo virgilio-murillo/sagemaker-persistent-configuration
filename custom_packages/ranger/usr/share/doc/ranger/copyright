@@ -1,0 +1,57 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: ranger
+Source: https://github.com/ranger/ranger
+
+Files: *
+Copyright:
+  2009-2018, Roman Zimbelmann <hut@hut.pm>
+  2010, David Barnett <davidbarnett2@gmail.com>
+  2010, Lucas de Vries <lucas@glacicle.org>
+  2010, Sitaram Chamarty <sitaram@atc.tcs.com>
+  2011, David Pugnasse <david.pugnasse@gmail.com>
+  2011, ornicar <thibault.duplessis@gmail.com>
+  2011-2012, AbdÃ³ Roig-Maranges <abdo.roig@gmail.com>
+  2011-2012, M Rawash <mrawash@gmail.com>
+  2012, Serge Broslavsky <serge.broslavsky@gmail.com>
+  2012, joe <joebodo@gmail.com>
+  2013, Emanuel Guevel
+  2013, Joseph Tannhuber <sepp.tannhuber@yahoo.de>
+  2013-2014, GermainZ <germanosz@gmail.com>
+  2014, CÃ©lestin Matte <celestin.matte@gmail.com>
+  2014, Milan Svoboda <milan.svoboda@centrum.cz>
+  2014, rukai <rubickent@gmail.com>
+  2015, Alexander Buddenbrock <a.buddenbrock@ish.de>
+  2015, Delisa Mason <iskanamagus@gmail.com>
+  2015, No Suck <admin@nosuck.org>
+  2015, Randy Nance <randynobx@gmail.com>
+  2015, Ryan Burns <rdburns@gmail.com>
+  2015, anekos <anekos@snca.net>
+  2015, bastorran
+  2015-2017, nfnty <git@nfnty.se>
+  2015-2018, Wojciech Siewierski <wojciech.siewierski@onet.pl>
+  2016-2018, Toon Nolten <toonn@toonn.io>
+License: GPL-3.0+
+
+Files: debian/*
+Copyright:
+  2016-2017, Mateusz Łukasik <mati75@linuxmint.pl>
+  2010-2018, Vern Sun <s5unty@gmail.com>
+  2018-2020, Mo Zhou <lumin@debian.org>
+License: GPL-3.0+
+
+License: GPL-3.0+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <http://www.gnu.org/licenses/>.
+ .
+ On Debian systems, the complete text of the GNU General
+ Public License version 3 can be found in "/usr/share/common-licenses/GPL-3".
