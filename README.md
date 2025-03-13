@@ -1,5 +1,5 @@
 # SageMaker Persistent Configuration
-This is just a test
+
 ![SageMaker Logo](https://your-image-url-here.com/sagemaker-logo.png)
 
 ## Introduction
